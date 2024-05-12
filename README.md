@@ -1,30 +1,22 @@
-# React + TypeScript + Vite
+# Front-End Challenge: Text Editor Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+In this challenge, the task is to develop a simple text editor inspired by platforms like Medium.com. The text editor should enable users to create, format, and organize text easily. Creativity in implementation and design is encouraged.
 
-Currently, two official plugins are available:
+## Core Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Task 1: Basic Text Editor Features
+- Pressing the 'Enter' key should start a new paragraph.
+- Allow users to drag and rearrange paragraphs within the document.
 
-## Expanding the ESLint configuration
+### Task 2: Text Formatting
+- On double-clicking any word or selection of text, display a tooltip offering three options:
+  - Bold: Make the selection bold.
+  - Underline: Underline the selection.
+  - Color Change: Change the selection color to the color of your choice.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Task 3: Link Embedding Support
+- Users can embed links using a specific tag format. It can follow the markdown link embedding format as follows: `(this is a link)[<http://medium.com/>]`
+- When a user finishes editing and clicks “Done,” the editor should convert these tags into clickable text links (like this: This is a link).
+- All the embedded links should be displayed outside the editor as a reference list in the same order as they appear in the editor.
+  - This list should use two alternate colors of your choice to display the links outside the editor, e.g., Red, Blue, Red, etc.
