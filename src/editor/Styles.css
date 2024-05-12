@@ -41,9 +41,6 @@
   padding: 8px;
   cursor: pointer;
 }
-.paragraph::selection{
-  border: none;
-}
 
 .paragraph:hover
 {

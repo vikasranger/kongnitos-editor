@@ -125,6 +125,7 @@ export default function TextEditor()
 
   const handleDelete = (id: string) =>
   {
+    if(!id || paragraphs.length <= 1) return;
     const newParagraph = paragraphs.filter(paragraph => paragraph.id != id);
     setParagraphs(newParagraph);
     saveToLocalStorage(PARAGRAPH_KEY, newParagraph);

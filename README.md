@@ -20,3 +20,5 @@ In this challenge, the task is to develop a simple text editor inspired by platf
 - When a user finishes editing and clicks “Done,” the editor should convert these tags into clickable text links (like this: This is a link).
 - All the embedded links should be displayed outside the editor as a reference list in the same order as they appear in the editor.
   - This list should use two alternate colors of your choice to display the links outside the editor, e.g., Red, Blue, Red, etc.
+                                    
+
