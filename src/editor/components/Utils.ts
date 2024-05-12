@@ -1,5 +1,5 @@
 import {v4 as uuId} from "uuid";
-import {IParagraph} from "./Types.ts";
+import {IParagraph} from "../Types.ts";
 
 export function getLocalStorageData(key: string): IParagraph[]
 {

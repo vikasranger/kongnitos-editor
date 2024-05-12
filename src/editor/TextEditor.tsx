@@ -2,14 +2,14 @@ import {useEffect} from "react";
 import React, {DragEvent, KeyboardEvent, useState} from "react";
 import "./Styles.css";
 import {v4 as uuId} from "uuid";
-import Links from "./Links.tsx";
-import Popover from "./Popover.tsx";
+import Links from "./components/Links.tsx";
+import Popover from "./components/Popover.tsx";
 import {PARAGRAPH_KEY} from "./Types.ts";
 import {IPopoverCss} from "./Types.ts";
 import {ILink} from "./Types.ts";
 import {IParagraph} from "./Types.ts";
-import {saveToLocalStorage} from "./Utils.ts";
-import {getLocalStorageData} from "./Utils.ts";
+import {saveToLocalStorage} from "./components/Utils.ts";
+import {getLocalStorageData} from "./components/Utils.ts";
 
 export default function TextEditor()
 {

@@ -1,5 +1,5 @@
-import {ILink} from "./Types.ts";
-import "./Styles.css";
+import {ILink} from "../Types.ts";
+import "../Styles.css";
 
 export default function Links(props: {links: ILink[]})
 {

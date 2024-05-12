@@ -1,5 +1,5 @@
-import {IPopoverCss} from "./Types.ts";
-import "./Styles.css"
+import {IPopoverCss} from "../Types.ts";
+import "../Styles.css"
 
 export default function Popover(props: {
   hidePopover: () => void,
