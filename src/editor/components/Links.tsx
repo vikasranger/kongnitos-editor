@@ -4,7 +4,6 @@ import "../Styles.css";
 export default function Links(props: {links: ILink[]})
 {
   const {links} = props;
-  console.log(links)
   return (
     <ul>
       {links.map((link, index) => (
@@ -21,4 +20,4 @@ export default function Links(props: {links: ILink[]})
       ))}
     </ul>
   );
-};
+}

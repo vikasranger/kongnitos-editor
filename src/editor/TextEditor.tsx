@@ -43,7 +43,6 @@ export default function TextEditor()
       setTimeout(() =>
       {
         const paragraph = document.getElementById(newId);
-        console.log(paragraph);
         if(paragraph)
         {
           paragraph.focus();
