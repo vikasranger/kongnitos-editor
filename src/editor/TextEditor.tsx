@@ -34,7 +34,8 @@ export default function TextEditor()
         0,
         {
           id: newId,
-          content: ""
+          content: "",
+          text: ""
         }
       );
       setParagraphs(newParagraphs);
@@ -53,10 +54,12 @@ export default function TextEditor()
   const handleInputChange = useCallback((e: React.FocusEvent<HTMLParagraphElement, Element>, id: string) =>
   {
     const content = e.target.innerHTML;
+    const text = e.target.innerText;
     const newParagraphs = paragraphs.map((p) =>
       p.id === id ? {
         ...p,
-        content: content
+        content: content,
+        text: text
       } : p
     );
     setParagraphs(newParagraphs);
@@ -66,16 +69,16 @@ export default function TextEditor()
   const calculateLinks = useCallback(() =>
   {
     const matchedLinks: ILink[] = [];
-    const regex = /\((.*?)\)\[(.*?)\]/g;
-
+   // const regex = /\((?<text>.*?)\)\[<(?<url>.*?)>\]/g;
+    const regex = /\((?<text>.*?)\)\[&lt;(?<url>.*?)&gt;\]/g;
     paragraphs.forEach(paragraph =>
     {
       let match;
-      while((match = regex.exec(paragraph.content)) !== null)
+      while((match = regex.exec(paragraph.content)) !== null && match.groups)
       {
         matchedLinks.push({
-          text: match[1],
-          url: match[2]
+          text: match.groups.text,
+          url: match.groups.url
         });
       }
     });

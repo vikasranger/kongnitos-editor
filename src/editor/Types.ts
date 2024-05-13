@@ -1,7 +1,8 @@
 export interface IParagraph
 {
   id: string,
-  content: string
+  content: string,
+  text: string
 }
 
 export interface ILink
