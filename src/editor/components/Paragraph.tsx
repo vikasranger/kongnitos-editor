@@ -46,7 +46,7 @@ export default function Paragraph(props: {
         onKeyDown={props.onKeyDown}
         dangerouslySetInnerHTML={{__html: props.html}}
       />
-      <button className={"delete"} onClick={props.onClick}>✖</button>
+      <button className={"delete"} onClick={props.onClick}>✕</button>
       {showPlaceholder && (
         <span className="placeholder">Enter your text here...</span>
       )}
