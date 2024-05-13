@@ -1,9 +1,10 @@
 import {useCallback} from "react";
 import {useEffect} from "react";
-import React, {DragEvent, KeyboardEvent, useState} from "react";
+import React, {DragEvent, KeyboardEvent, FocusEvent, useState} from "react";
 import "./Styles.css";
 import {v4 as uuId} from "uuid";
 import Links from "./components/Links.tsx";
+import Paragraph from "./components/Paragraph.tsx";
 import Popover from "./components/Popover.tsx";
 import {PARAGRAPH_KEY} from "./components/Utils.ts";
 import {IPopoverCss} from "./Types.ts";
@@ -51,7 +52,7 @@ export default function TextEditor()
     }
   }, []);
 
-  const handleInputChange = useCallback((e: React.FocusEvent<HTMLParagraphElement, Element>, id: string) =>
+  const handleInputChange = useCallback((e: FocusEvent<HTMLParagraphElement, Element>, id: string) =>
   {
     const content = e.target.innerHTML;
     const text = e.target.innerText;
@@ -69,7 +70,6 @@ export default function TextEditor()
   const calculateLinks = useCallback(() =>
   {
     const matchedLinks: ILink[] = [];
-   // const regex = /\((?<text>.*?)\)\[<(?<url>.*?)>\]/g;
     const regex = /\((?<text>.*?)\)\[&lt;(?<url>.*?)&gt;\]/g;
     paragraphs.forEach(paragraph =>
     {
@@ -88,11 +88,6 @@ export default function TextEditor()
   const handleDragStart = (e: DragEvent<HTMLParagraphElement>, id: string) =>
   {
     e.dataTransfer.setData("text/plain", id);
-  };
-
-  const handleDragOver = (e: React.DragEvent<HTMLParagraphElement>) =>
-  {
-    e.preventDefault();
   };
 
   const handleDrop = useCallback((e: DragEvent<HTMLParagraphElement>, dropId: string) =>
@@ -151,26 +146,18 @@ export default function TextEditor()
           id,
           content
         }, index) => (
-          <div className={"paragraph-container"}>
-            <p
-              key={id}
-              id={id.toString()}
-              className="paragraph"
-              draggable
-              onDoubleClick={showPopover}
-              onDragStart={(e) => handleDragStart(e, id)}
-              onDragOver={handleDragOver}
-              onDrop={(e) => handleDrop(e, id)}
-              contentEditable
-              onBlur={(e) => handleInputChange(e, id)}
-              onKeyDown={(e) => handleKeyDown(e, index)}
-              dangerouslySetInnerHTML={{__html: content}}
-            />
-            <button className={"delete"} onClick={() => handleDelete(id)}>✖</button>
-            {(!content || content.trim() === "") && (
-              <span className="placeholder">Enter your text here...</span>
-            )}
-          </div>
+          <Paragraph
+            key={id}
+            id={id}
+            onDoubleClick={showPopover}
+            onDragStart={(e) => handleDragStart(e, id)}
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={(e) => handleDrop(e, id)}
+            onBlur={(e) => handleInputChange(e, id)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
+            html={content}
+            onClick={() => handleDelete(id)}
+          />
         ))}
       </div>
       <Popover position={popoverCss} />
