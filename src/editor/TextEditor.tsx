@@ -126,14 +126,6 @@ export default function TextEditor()
     });
   };
 
-  const hidePopover = () =>
-  {
-    setTimeout(() =>
-    {
-      setPopoverCss(undefined);
-    }, 1000);
-  };
-
   const handleDelete = (id: string) =>
   {
     if(!id || paragraphs.length <= 1) return;
@@ -177,7 +169,7 @@ export default function TextEditor()
           </div>
         ))}
       </div>
-      <Popover hidePopover={hidePopover} position={popoverCss} />
+      <Popover position={popoverCss} />
       <Links links={links} />
     </div>
   );
