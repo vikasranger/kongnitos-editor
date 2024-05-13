@@ -6,6 +6,10 @@
   text-align: start;
 }
 
+.title{
+  text-align: center;
+}
+
 .textArea
 {
   border: none;

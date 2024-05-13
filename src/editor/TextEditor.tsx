@@ -146,7 +146,7 @@ export default function TextEditor()
 
   return (
     <div className="App">
-      <h1>📝Text Editor</h1>
+      <h1 className={"title"}>📝Text Editor</h1>
       <div className="editor">
         {paragraphs.map(({
           id,
