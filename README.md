@@ -23,12 +23,19 @@ In this challenge, the task is to develop a simple text editor inspired by platf
                                     
 
 ## Implementation
-- use shift+enter for new line 
-- drag paragraph will be push before drop and drop paragraph.
-- double click on text for bold , italic and color 
-- everything is stored in local storage 
-- it has normal text adding and bold, italic and color css
-- but copy and paste content it will retain its css
+- **New Line:** Use the keyboard shortcut Shift+Enter to create a new line within the text.
+
+- **Drag and Drop:** Enable the ability to drag and drop paragraphs to rearrange their order within the document. Dragging a paragraph will push it before the dropped location.
+
+- **Text Formatting:** Double-click on text to activate a popover menu offering options for bold, italic, and color changes.
+
+- **Local Storage:** All data, including text content and formatting changes, are stored locally using the browser's local storage.
+
+- **Text Editing:** The editor allows for normal text input along with the application of bold, italic, and color CSS styles to the text.
+
+- **Preserved CSS on Copy-Paste:** Copying and pasting content retains its formatting, including any applied CSS styles such as bold, italic, or color.
+
+- **Local Storage Persistence:** Utilize local storage to retain the document's data, ensuring that changes made are saved and can be restored upon subsequent visits or reloads of the page.
 
 
 Check out : [TextEditor](https://kongnitos-editor.vercel.app/)
