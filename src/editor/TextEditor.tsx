@@ -69,11 +69,12 @@ export default function TextEditor()
   const calculateLinks = useCallback(() =>
   {
     const matchedLinks: ILink[] = [];
-    const regex = /\((?<text>.*?)\)\[&lt;(?<url>.*?)&gt;\]/g;
+    //const regex = /\((?<text>.*?)\)\[&lt;(?<url>.*?)&gt;\]/g;
+    const regex = /\((?<text>.*?)\)\[<(?<url>.*?)>\]/g;
     paragraphs.forEach(paragraph =>
     {
       let match;
-      while((match = regex.exec(paragraph.content)) !== null && match.groups)
+      while((match = regex.exec(paragraph.text)) !== null && match.groups)
       {
         matchedLinks.push({
           text: match.groups.text,
