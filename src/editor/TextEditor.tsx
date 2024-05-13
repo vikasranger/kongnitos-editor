@@ -50,7 +50,7 @@ export default function TextEditor()
         }
       });
     }
-  }, []);
+  }, [paragraphs, document]);
 
   const handleInputChange = useCallback((e: FocusEvent<HTMLParagraphElement, Element>, id: string) =>
   {
