@@ -94,16 +94,24 @@ export default function TextEditor()
   const handleDrop = (e: DragEvent<HTMLParagraphElement>, dropId: string) =>
   {
     const dragId = e.dataTransfer.getData("text/plain");
-    const newParagraphs = [...paragraphs];
-
-    const dropIndex = newParagraphs.findIndex((p) => p.id === dropId);
-    const dragIndex = newParagraphs.findIndex((p) => p.id === dragId);
-    if(dragIndex != -1 && dropIndex != -1 && dragIndex !== dropIndex)
+    if(!dragId) return;
+    const dragIndex = paragraphs.findIndex((p) => p.id === dragId);
+    const dropIndex = paragraphs.findIndex((p) => p.id === dropId);
+    if(dragIndex === dropIndex)
     {
-      [newParagraphs[dropIndex], newParagraphs[dragIndex]] = [newParagraphs[dragIndex], newParagraphs[dropIndex]];
+      return;
     }
-    setParagraphs(newParagraphs);
-    saveToLocalStorage(PARAGRAPH_KEY, newParagraphs);
+
+    const updatedParagraphs = [...paragraphs];
+
+    const draggedItem = updatedParagraphs.splice(dragIndex, 1)[0];
+
+    const adjustedDropIndex = dropIndex > dragIndex ? dropIndex - 1 : dropIndex;
+
+    updatedParagraphs.splice(adjustedDropIndex, 0, draggedItem);
+
+    setParagraphs(updatedParagraphs);
+    saveToLocalStorage(PARAGRAPH_KEY, updatedParagraphs);
   };
 
   const showPopover = (e: React.MouseEvent<HTMLParagraphElement>) =>
@@ -138,7 +146,7 @@ export default function TextEditor()
 
   return (
     <div className="App">
-      <h1>Text Editor</h1>
+      <h1>📝Text Editor</h1>
       <div className="editor">
         {paragraphs.map(({
           id,
@@ -159,7 +167,10 @@ export default function TextEditor()
               onKeyDown={(e) => handleKeyDown(e, index)}
               dangerouslySetInnerHTML={{__html: content}}
             />
-            <button className={"delete"} onClick={() => handleDelete(id)}>🗑️</button>
+            <button className={"delete"} onClick={() => handleDelete(id)}>✖</button>
+            {(!content || content.trim() === "") && (
+              <span className="placeholder">Enter your text here...</span>
+            )}
           </div>
         ))}
       </div>

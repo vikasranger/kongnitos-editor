@@ -24,7 +24,7 @@ In this challenge, the task is to develop a simple text editor inspired by platf
 
 ## Implementation
 - use shift+enter for new line 
-- drag and drop to exchange positions
+- drag paragraph will be push before drop and drop paragraph.
 - double click on text for bold , italic and color 
 - everything is stored in local storage 
 
