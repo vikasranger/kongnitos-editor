@@ -5,7 +5,7 @@ import "./Styles.css";
 import {v4 as uuId} from "uuid";
 import Links from "./components/Links.tsx";
 import Popover from "./components/Popover.tsx";
-import {PARAGRAPH_KEY} from "./Types.ts";
+import {PARAGRAPH_KEY} from "./components/Utils.ts";
 import {IPopoverCss} from "./Types.ts";
 import {ILink} from "./Types.ts";
 import {IParagraph} from "./Types.ts";

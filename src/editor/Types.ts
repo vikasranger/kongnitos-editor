@@ -18,4 +18,3 @@ export interface IPopoverCss
   display?: "flex" | "none"
 }
 
-export const PARAGRAPH_KEY = "paragraph_key";
