@@ -22,3 +22,11 @@ In this challenge, the task is to develop a simple text editor inspired by platf
   - This list should use two alternate colors of your choice to display the links outside the editor, e.g., Red, Blue, Red, etc.
                                     
 
+## Implementation
+- use shift+enter for new line 
+- drag and drop to exchange positions
+- double click on text for bold , italic and color 
+- everything is stored in local storage 
+
+
+Check out : [TextEditor](https://kongnitos-editor.vercel.app/)
