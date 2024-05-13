@@ -1,3 +1,4 @@
+import {useCallback} from "react";
 import {useEffect} from "react";
 import React, {DragEvent, KeyboardEvent, useState} from "react";
 import "./Styles.css";
@@ -17,7 +18,7 @@ export default function TextEditor()
   const [links, setLinks] = useState<ILink[]>([]);
   const [popoverCss, setPopoverCss] = useState<IPopoverCss | undefined>();
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLParagraphElement>, index: number) =>
+  const handleKeyDown = useCallback((e: KeyboardEvent<HTMLParagraphElement>, index: number) =>
   {
     if(e.key === "Enter" && e.shiftKey)
     {
@@ -47,9 +48,9 @@ export default function TextEditor()
         }
       });
     }
-  };
+  }, []);
 
-  const handleInputChange = (e: React.FocusEvent<HTMLParagraphElement, Element>, id: string) =>
+  const handleInputChange = useCallback((e: React.FocusEvent<HTMLParagraphElement, Element>, id: string) =>
   {
     const content = e.target.innerHTML;
     const newParagraphs = paragraphs.map((p) =>
@@ -60,9 +61,9 @@ export default function TextEditor()
     );
     setParagraphs(newParagraphs);
     saveToLocalStorage(PARAGRAPH_KEY, newParagraphs);
-  };
+  }, [paragraphs]);
 
-  const calculateLinks = () =>
+  const calculateLinks = useCallback(() =>
   {
     const matchedLinks: ILink[] = [];
     const regex = /\((.*?)\)\[(.*?)\]/g;
@@ -79,7 +80,7 @@ export default function TextEditor()
       }
     });
     setLinks(matchedLinks);
-  };
+  }, [paragraphs]);
 
   const handleDragStart = (e: DragEvent<HTMLParagraphElement>, id: string) =>
   {
@@ -91,7 +92,7 @@ export default function TextEditor()
     e.preventDefault();
   };
 
-  const handleDrop = (e: DragEvent<HTMLParagraphElement>, dropId: string) =>
+  const handleDrop = useCallback((e: DragEvent<HTMLParagraphElement>, dropId: string) =>
   {
     const dragId = e.dataTransfer.getData("text/plain");
     if(!dragId) return;
@@ -112,9 +113,9 @@ export default function TextEditor()
 
     setParagraphs(updatedParagraphs);
     saveToLocalStorage(PARAGRAPH_KEY, updatedParagraphs);
-  };
+  }, [paragraphs]);
 
-  const showPopover = (e: React.MouseEvent<HTMLParagraphElement>) =>
+  const showPopover = useCallback((e: React.MouseEvent<HTMLParagraphElement>) =>
   {
     const scrollY = window.scrollY;
     const scrollX = window.scrollX;
@@ -124,15 +125,15 @@ export default function TextEditor()
       left: scrollX + e.clientX + "px",
       display: "flex"
     });
-  };
+  }, []);
 
-  const handleDelete = (id: string) =>
+  const handleDelete = useCallback((id: string) =>
   {
     if(!id || paragraphs.length <= 1) return;
     const newParagraph = paragraphs.filter(paragraph => paragraph.id != id);
     setParagraphs(newParagraph);
     saveToLocalStorage(PARAGRAPH_KEY, newParagraph);
-  };
+  }, [paragraphs]);
 
   useEffect(() =>
   {
