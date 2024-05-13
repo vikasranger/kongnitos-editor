@@ -116,9 +116,12 @@ export default function TextEditor()
 
   const showPopover = (e: React.MouseEvent<HTMLParagraphElement>) =>
   {
+    const scrollY = window.scrollY;
+    const scrollX = window.scrollX;
+
     setPopoverCss({
-      top: e.clientY + "px",
-      left: e.clientX + "px",
+      top: scrollY + e.clientY + "px",
+      left: scrollX + e.clientX + "px",
       display: "flex"
     });
   };
